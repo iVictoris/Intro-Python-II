@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -30,14 +31,14 @@ narrow       foyer
 treasure     overlook
 """
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].rooms['south'] = room['foyer']
+room['foyer'].rooms['north'] = room['outside']
+room['foyer'].rooms['south'] = room['overlook']
+room['foyer'].rooms['west'] = room['narrow']
+room['overlook'].rooms['north'] = room['foyer']
+room['narrow'].rooms['east'] = room['foyer']
+room['narrow'].rooms['south'] = room['treasure']
+room['treasure'].rooms['north'] = room['narrow']
 
 #
 # Main
@@ -55,3 +56,21 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+player = Player('Victor')
+while (True):
+    location = player.location
+    print(f'You are currently here: {location}')
+    choice = input(
+        'Please enter a direction in which you\'d like to go: n, e, s, w or q to quit: ')
+    valid_choices = ['n', 'e', 'w', 's', 'q']
+    if choice not in valid_choices:
+        print('Invalid choice, please try again')
+        continue
+    if (choice == 'q'):
+        print('You\'ve elected to quit, so good bye.')
+
+    # figure out a way to print room => __str__
+    if choice == 's':
+
+        if (room[location].rooms['south']):
+            print(room[location].rooms['south'])
