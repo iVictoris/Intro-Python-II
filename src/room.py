@@ -14,3 +14,6 @@ class Room:
 
   def __repr__(self):
     return f"Room({self.__name})"
+
+  def assign_room(self, direction, room):
+    setattr(self, f'__{direction}', room)
