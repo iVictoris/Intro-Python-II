@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 def main():
 
@@ -43,23 +44,23 @@ def main():
         # only if len(choice) < 1 or take or drop not inside choice
         if (len(choice) < 1 or ('take' not in choice and 'drop' not in choice)):
             continue
-
+        
         elif (len(choice) == 1):
 
-        if (choice not in valid_choices):
-            print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
-            continue
-
-
-        if (choice == 'q'):
-            return
-        try:
-            player.enter_room(choice)
+            if (choice not in valid_choices):
+                print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
                 continue
-        except ValueError:
-            print('Unfortunately, that path does not exist, please try again')
-            continue
 
+
+            if (choice == 'q'):
+                return
+            try:
+                player.enter_room(choice)
+                continue
+            except ValueError:
+                print('Unfortunately, that path does not exist, please try again')
+                continue
+        
         # here the choices > 1
         verb, *item = choice
         item = ' '.join(item)
@@ -75,6 +76,14 @@ def main():
                 current_room.remove_item(item)
                 player.add_item(Item(item))
                 continue
+
+            print(f"{item} does not exist in room. Please try again")
+            continue
+
+            # if not in the room
+                # print error -> continue
+
+
 if __name__ == '__main__':
     main()
 # Write a loop that:
