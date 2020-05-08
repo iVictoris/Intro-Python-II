@@ -41,7 +41,7 @@ def main():
         choice = input('Please choose what direction you would like to go or enter a take/drop command: ').split(' ')
         
         # only if len(choice) < 1 or take or drop not inside choice
-        if (len(choice) < 1 or ('take' not in choice and 'drop' not in choice)):
+        if (len(choice) < 1 or (not len(choice) == 1 and 'take' not in choice and 'drop' not in choice)):
             continue
 
         elif (len(choice) == 1):
