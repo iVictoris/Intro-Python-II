@@ -24,5 +24,7 @@ class Room:
     }
     setattr(self, f'__{direction}', room)
     setattr(room, f'__{opposite_direction[direction]}', self)
+  
   def get_room(self, direction):
     return getattr(self, f'__{direction}')
+
