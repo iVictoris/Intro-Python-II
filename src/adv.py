@@ -85,6 +85,9 @@ def main():
         # check verb to be remove or drop
         if verb == 'remove' or verb == 'drop':
 
+            # now we want to check if the item is in the player's inventory
+            if item in player:
+
 
 
 
