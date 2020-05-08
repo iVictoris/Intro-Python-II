@@ -88,6 +88,10 @@ def main():
             # now we want to check if the item is in the player's inventory
             if item in player:
 
+                # remove item from player and drop into room if it is
+                player.drop_item(item)
+                current_room.add_item(Item(item))
+
 
 
 
