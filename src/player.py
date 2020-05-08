@@ -7,7 +7,14 @@ class Player:
     self.__current_room = room
 
   def __str__(self):
-    return f'Player: {self.__name}, currently in room: {self.__current_room}'
+    room = self.__current_room
+    return f'''Player: {self.__name}, currently in room: {self.__current_room}
+
+    \t\t\t Map Overview:
+
+    \t\t\t\t{room.n}
+    \t{room.w}\t\t{room}\t\t\t{room.e}
+    \t\t\t\t{room.s}'''
   
   def get_room(self):
     return self.__current_room
