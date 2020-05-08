@@ -25,3 +25,9 @@ class Player:
     if not next_room:
       raise ValueError()
     self.__current_room = next_room
+
+  def add_item(self, item):
+    self.inventory.append(item)
+    item.on_take()
+    
+
