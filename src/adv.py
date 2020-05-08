@@ -60,6 +60,9 @@ def main():
             print('Unfortunately, that path does not exist, please try again')
             continue
 
+        # here the choices > 1
+        verb, *item = choice
+        item = ' '.join(item)
 if __name__ == '__main__':
     main()
 # Write a loop that:
