@@ -65,6 +65,7 @@ def main():
         item = ' '.join(item)
         # if user enters get/take
         if verb == 'get' or verb == 'take':
+            current_room = player.get_room()
 if __name__ == '__main__':
     main()
 # Write a loop that:
