@@ -1,3 +1,4 @@
+from item import Item
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
@@ -30,6 +31,7 @@ class Player:
     self.__current_room = next_room
 
   def add_item(self, item):
+    item = Item(item)
     self.inventory.append(item)
     item.on_take()
     
