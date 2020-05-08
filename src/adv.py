@@ -71,6 +71,10 @@ def main():
             # if item in room
             if (item in current_room):
 
+                # remove item from room and add to player's inventory
+                current_room.remove_item(item)
+                player.add_item(Item(item))
+                continue
 if __name__ == '__main__':
     main()
 # Write a loop that:
