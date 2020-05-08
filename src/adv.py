@@ -47,6 +47,15 @@ player = Player('Me', room['outside'])
         if (choice not in valid_choices):
             print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
             continue
+
+
+        if (choice == 'q'):
+            return
+        try:
+            player.enter_room(choice)
+        except ValueError:
+            print('Unfortunately, that path does not exist, please try again')
+            continue
 # Write a loop that:
 #
 # * Prints the current room name
