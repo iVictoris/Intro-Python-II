@@ -16,6 +16,13 @@ class Room:
     return f"Room({self.__name})"
 
   def assign_room(self, direction, room):
+    opposite_direction = {
+      's': 'n',
+      'n': 's',
+      'w': 'e',
+      'e': 'w'
+    }
     setattr(self, f'__{direction}', room)
+    setattr(room, f'__{opposite_direction[direction]}', self)
   def get_room(self, direction):
     return getattr(self, f'__{direction}')

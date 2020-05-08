@@ -22,14 +22,11 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].assign_room('s', room['foyer'])
+room['foyer'].assign_room('s', room['overlook'])
+room['foyer'].assign_room('w', room['narrow'])
+room['overlook'].assign_room('n', room['foyer'])
+room['narrow'].assign_room('s', room['treasure'])
 
 #
 # Main
