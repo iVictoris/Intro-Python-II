@@ -35,4 +35,7 @@ class Player:
     self.inventory.append(item)
     item.on_take()
     
-
+  def __contains__(self, item):
+    for i in self.inventory:
+      if str(i) == item:
+        return True
