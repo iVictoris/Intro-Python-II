@@ -25,7 +25,7 @@ def main():
     room['foyer'].assign_room('w', room['narrow'])
     room['overlook'].assign_room('n', room['foyer'])
     room['narrow'].assign_room('s', room['treasure'])
-    valid_choices = list('newsq')
+    valid_choices = list('newsqi') + ['inventory']
 
     # Make a new player object that is currently in the 'outside' room.
     player = Player('Me', room['outside'])
