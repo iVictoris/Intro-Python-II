@@ -32,7 +32,7 @@ def main():
 
     # Player's __str__ method prints its name and room location
     while True:
-        print('\n')
+        print('\n------------------------------------------------- \n')
         print(player)
 
         # get room will return the room the player is currently in
