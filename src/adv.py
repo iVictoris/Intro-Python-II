@@ -1,6 +1,5 @@
 from room import Room
 from player import Player
-from item import Item
 
 def main():
 
@@ -74,7 +73,7 @@ def main():
 
                 # remove item from room and add to player's inventory
                 current_room.remove_item(item)
-                player.add_item(Item(item))
+                player.add_item(item)
                 continue
 
             # if not in the room
@@ -90,7 +89,7 @@ def main():
 
                 # remove item from player and drop into room if it is
                 player.drop_item(item)
-                current_room.add_item(Item(item))
+                current_room.add_item(item)
 
 
 
