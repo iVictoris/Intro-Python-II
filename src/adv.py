@@ -28,6 +28,7 @@ room['foyer'].assign_room('s', room['overlook'])
 room['foyer'].assign_room('w', room['narrow'])
 room['overlook'].assign_room('n', room['foyer'])
 room['narrow'].assign_room('s', room['treasure'])
+    valid_choices = list('newsq')
 
 #
 # Main
@@ -35,6 +36,17 @@ room['narrow'].assign_room('s', room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player('Me', room['outside'])
+        print('\n')
+        print(player)
+
+        # get room will return the room the player is currently in
+        print('\n' + player.get_room().get_description())
+
+        choice = input('Please choose what direction you would like to go: ')
+
+        if (choice not in valid_choices):
+            print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
+            continue
 # Write a loop that:
 #
 # * Prints the current room name
