@@ -1,3 +1,4 @@
+from item import Item
 # Implement a class to hold room information. This should have name and
 # description attributes.
 class Room:
@@ -37,3 +38,14 @@ class Room:
       if str(i) == item:
         return True
         
+  def remove_item(self, item):
+    # slice up to index of item name 
+    # concat the index after item
+    item_location = 0
+    for index in range(len(self.items)):
+      if str(self.items[index]) == item:
+        item_location = index
+        break
+
+    self.items = self.items[0:item_location] + self.items[item_location+1:]
+
