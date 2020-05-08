@@ -28,3 +28,5 @@ class Room:
   def get_room(self, direction):
     return getattr(self, f'__{direction}')
 
+  def get_description(self):
+    return self.__description
