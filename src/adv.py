@@ -62,11 +62,11 @@ def main():
                 continue
         
         # here the choices > 1
+        current_room = player.get_room()
         verb, *item = choice
         item = ' '.join(item)
         # if user enters get/take
         if verb == 'get' or verb == 'take':
-            current_room = player.get_room()
 
             # check current room for item name
             # if item in room
