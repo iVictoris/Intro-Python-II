@@ -15,7 +15,10 @@ class Player:
 
     \t\t\t\t{room.n}
     \t{room.w}\t\t{room}\t\t\t{room.e}
-    \t\t\t\t{room.s}'''
+    \t\t\t\t{room.s}
+    
+    Other info:
+    Items: {', '.join([str(item) for item in room.items])}'''
   
   def get_room(self):
     return self.__current_room
