@@ -8,3 +8,9 @@ class Room:
     self.__e = None
     self.__w = None
     self.__s = None
+
+  def __str__(self):
+    return f"Name: {self.__name}"
+
+  def __repr__(self):
+    return f"Room({self.__name})"
