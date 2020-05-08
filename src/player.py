@@ -11,3 +11,9 @@ class Player:
   
   def get_room(self):
     return self.__current_room
+
+  def enter_room(self, direction):
+    next_room = getattr(self.__current_room, direction)
+    if not next_room:
+      raise ValueError()
+    self.__current_room = next_room
