@@ -8,3 +8,6 @@ class Player:
 
   def __str__(self):
     return f'Player: {self.__name}, currently in room: {self.__current_room}'
+  
+  def get_room(self):
+    return self.__current_room
