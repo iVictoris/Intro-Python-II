@@ -82,6 +82,10 @@ def main():
             print(f"{item} does not exist in room. Please try again")
             continue
 
+        # check verb to be remove or drop
+        if verb == 'remove' or verb == 'drop':
+
+
 
 
 if __name__ == '__main__':
