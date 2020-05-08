@@ -50,9 +50,14 @@ def main():
                 print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
                 continue
 
-
             if (choice == 'q'):
                 return
+
+            if (choice == 'i' or choice == 'inventory'):
+                print(f"""\n\t\tPlayer Inventory\n-------------------------------------------------
+                {', '.join([ str(item) for item in player.inventory])}
+                """)
+                continue
             try:
                 player.enter_room(choice)
                 continue
