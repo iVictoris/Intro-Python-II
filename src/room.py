@@ -4,10 +4,10 @@ class Room:
   def __init__(self, name, description):
     self.__name = name
     self.__description = description
-    self.__n = None
-    self.__e = None
-    self.__w = None
-    self.__s = None
+    self.n = None
+    self.e = None
+    self.w = None
+    self.s = None
 
   def __str__(self):
     return f"{self.__name}"
@@ -22,11 +22,12 @@ class Room:
       'w': 'e',
       'e': 'w'
     }
-    setattr(self, f'__{direction}', room)
-    setattr(room, f'__{opposite_direction[direction]}', self)
+    setattr(self, direction, room)
+    setattr(room, opposite_direction[direction], self)
   
   def get_room(self, direction):
-    return getattr(self, f'__{direction}')
+    return self[direction]
 
   def get_description(self):
     return self.__description
+
