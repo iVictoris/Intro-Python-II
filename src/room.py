@@ -17,3 +17,5 @@ class Room:
 
   def assign_room(self, direction, room):
     setattr(self, f'__{direction}', room)
+  def get_room(self, direction):
+    return getattr(self, f'__{direction}')
