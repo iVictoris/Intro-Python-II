@@ -34,6 +34,15 @@ class Player:
     item = Item(item)
     self.inventory.append(item)
     item.on_take()
+
+  def drop_item(self, item):
+    item_location = 0
+    for index in range(len(self.inventory)):
+      if str(self.inventory[index]) == item:
+        item_location = index
+        break
+
+    self.inventory = self.inventory[0:item_location] + self.inventory[item_location+1:]
     
   def __contains__(self, item):
     for i in self.inventory:
