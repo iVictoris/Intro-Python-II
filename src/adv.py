@@ -38,7 +38,11 @@ def main():
         # get room will return the room the player is currently in
         print('\n' + player.get_room().get_description())
 
-        choice = input('Please choose what direction you would like to go: ')
+        # only if len(choice) < 1 or take or drop not inside choice
+        if (len(choice) < 1 or ('take' not in choice and 'drop' not in choice)):
+            continue
+
+        elif (len(choice) == 1):
 
         if (choice not in valid_choices):
             print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
