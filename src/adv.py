@@ -1,44 +1,106 @@
 from room import Room
+from player import Player
 
-# Declare all the rooms
+def main():
 
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    room = {
+        'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", ['Common Staff', 'Common Sword']),
+        'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    passages run north and east.""", ['Rare Staff', 'Rare Sword', 'Rare Armor']),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+        'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    into the darkness. Ahead to the north, a light flickers in
+    the distance, but there is no way across the chasm.""", ['Rare Gloves', 'Epic Sword', 'Epic Staff', 'Epic Bow', 'Epic Glove']),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+        'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    to north. The smell of gold permeates the air."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+        'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    chamber! Sadly, it has already been completely emptied by
+    earlier adventurers. The only exit is to the south."""),
+    }
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
+    room['outside'].assign_room('s', room['foyer'])
+    room['foyer'].assign_room('s', room['overlook'])
+    room['foyer'].assign_room('w', room['narrow'])
+    room['overlook'].assign_room('n', room['foyer'])
+    room['narrow'].assign_room('s', room['treasure'])
+    valid_choices = list('newsqi') + ['inventory']
+
+    # Make a new player object that is currently in the 'outside' room.
+    player = Player('Me', room['outside'])
+
+    # Player's __str__ method prints its name and room location
+    while True:
+        print('\n------------------------------------------------- \n')
+        print(player)
+
+        # get room will return the room the player is currently in
+        print('\n' + player.get_room().get_description())
+
+        choice = input('Please choose what direction you would like to go or enter a take/drop command: ').split(' ')
+        
+        # only if len(choice) < 1 or take or drop not inside choice
+        if (len(choice) < 1 or (not len(choice) == 1 and 'take' not in choice and 'drop' not in choice)):
+            continue
+
+        elif (len(choice) == 1):
+            choice = ''.join(choice)
+            if (choice not in valid_choices):
+                print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
+                continue
+
+            if (choice == 'q'):
+                return
+
+            if (choice == 'i' or choice == 'inventory'):
+                print(f"""\n\t\tPlayer Inventory\n-------------------------------------------------
+                {', '.join([ str(item) for item in player.inventory])}
+                """)
+                continue
+            try:
+                player.enter_room(choice)
+                continue
+            except ValueError:
+                print('Unfortunately, that path does not exist, please try again')
+                continue
+        
+        # here the choices > 1
+        current_room = player.get_room()
+        verb, *item = choice
+        item = ' '.join(item)
+        # if user enters get/take
+        if verb == 'get' or verb == 'take':
+
+            # check current room for item name
+            # if item in room
+            if (item in current_room):
+
+                # remove item from room and add to player's inventory
+                current_room.remove_item(item)
+                player.add_item(item)
+                continue
+
+            # if not in the room
+                # print error -> continue
+            print(f"{item} does not exist in room. Please try again")
+            continue
+
+        # check verb to be remove or drop
+        if verb == 'remove' or verb == 'drop':
+
+            # now we want to check if the item is in the player's inventory
+            if item in player:
+
+                # remove item from player and drop into room if it is
+                player.drop_item(item)
+                current_room.add_item(item)
 
 
-# Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
+if __name__ == '__main__':
+    main()
 # Write a loop that:
 #
 # * Prints the current room name
