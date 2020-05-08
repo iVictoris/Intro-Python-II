@@ -55,6 +55,7 @@ def main():
             return
         try:
             player.enter_room(choice)
+                continue
         except ValueError:
             print('Unfortunately, that path does not exist, please try again')
             continue
