@@ -32,3 +32,8 @@ class Room:
   def get_description(self):
     return self.__description
 
+  def __contains__(self, item):
+    for i in self.items:
+      if str(i) == item:
+        return True
+        
