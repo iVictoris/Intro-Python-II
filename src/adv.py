@@ -38,6 +38,8 @@ def main():
         # get room will return the room the player is currently in
         print('\n' + player.get_room().get_description())
 
+        choice = input('Please choose what direction you would like to go or enter a take/drop command: ').split(' ')
+        
         # only if len(choice) < 1 or take or drop not inside choice
         if (len(choice) < 1 or ('take' not in choice and 'drop' not in choice)):
             continue
