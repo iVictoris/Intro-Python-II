@@ -45,7 +45,7 @@ def main():
             continue
 
         elif (len(choice) == 1):
-
+            choice = ''.join(choice)
             if (choice not in valid_choices):
                 print(f'Choices can only be {", ".join(valid_choices).rstrip() }.')
                 continue
