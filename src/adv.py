@@ -44,7 +44,7 @@ def main():
         # only if len(choice) < 1 or take or drop not inside choice
         if (len(choice) < 1 or ('take' not in choice and 'drop' not in choice)):
             continue
-        
+
         elif (len(choice) == 1):
 
             if (choice not in valid_choices):
@@ -77,11 +77,11 @@ def main():
                 player.add_item(Item(item))
                 continue
 
+            # if not in the room
+                # print error -> continue
             print(f"{item} does not exist in room. Please try again")
             continue
 
-            # if not in the room
-                # print error -> continue
 
 
 if __name__ == '__main__':
