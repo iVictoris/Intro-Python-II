@@ -63,6 +63,8 @@ def main():
         # here the choices > 1
         verb, *item = choice
         item = ' '.join(item)
+        # if user enters get/take
+        if verb == 'get' or verb == 'take':
 if __name__ == '__main__':
     main()
 # Write a loop that:
